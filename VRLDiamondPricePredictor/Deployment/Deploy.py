@@ -7,7 +7,7 @@ st.set_page_config(layout="centered",page_icon=":gem:")
 warnings.filterwarnings("ignore")
 path = os.path.dirname(__file__)
 st.image(path+"/MyLogo.png",width=500)
-
+st.write(path)
 col1,col2= st.columns(2)
 col1.markdown('<h1 style="color:blue; font-family:cursive; text-align:center">Diamomd Price <br>Predictor </h1>',unsafe_allow_html=True)
 col2.image(path+"/diamond.png",width=300)
