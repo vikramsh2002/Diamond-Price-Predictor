@@ -2,18 +2,20 @@ import streamlit as st
 import numpy as np
 import joblib as jb
 import warnings
-import time
+import os
 st.set_page_config(layout="centered",page_icon=":gem:")
 warnings.filterwarnings("ignore")
-st.image("MyLogo.png",width=500)
-
+path = os.path.dirname(__file__)
+st.image(path+"/MyLogo.png",width=500)
+#st.write(path)
 col1,col2= st.columns(2)
 col1.markdown('<h1 style="color:blue; font-family:cursive; text-align:center">Diamomd Price <br>Predictor </h1>',unsafe_allow_html=True)
-col2.image("diamond.png",width=300)
-
+col2.image(path+"/diamond.png",width=300)
+path_main = "/".join(path.split("/") [:-1])
+#st.write(path_main)
 
 features = np.zeros((11,))
-maps=jb.load("../Maps.pkl")
+maps=jb.load(path_main+"/Maps.pkl")
 
 # Creating form to take
 
@@ -22,7 +24,7 @@ with st.expander("Shape of Diamonds"):
     shapes= list(maps["Shapes"].keys())
     col1,col2 = st.columns(2)
     col1.markdown("<h3>Select the Shape of your Diamond</h3>",unsafe_allow_html=True)
-    col2.image("Shapes/allshapes.png",caption='Different available shapes of Diamonds',width=150,)
+    col2.image(path+"/Shapes/allshapes.png",caption='Different available shapes of Diamonds',width=150,)
     sh_select = col1.selectbox("",shapes)
     #print("Shape: ",sh_select)
     features[-1]=maps["Shapes"][sh_select]
@@ -59,11 +61,11 @@ with st.expander("Appearance of Diamonds"):
 
 # Prediction Part Begins
 def Prediction(features):
-    model = jb.load("../Model/GBRModel.pkl")
-    scale_x=jb.load("../Scalers/ScalerX.pkl")
+    model = jb.load(path_main+"/Model/GBRModel.pkl")
+    scale_x=jb.load(path_main+"/Scalers/ScalerX.pkl")
     feat=scale_x.transform(features.reshape(1,-1))
     y_pd= model.predict(feat)
-    scale_y = jb.load("../Scalers/ScalerY.pkl")
+    scale_y = jb.load(path_main+"/Scalers/ScalerY.pkl")
     price = scale_y.inverse_transform(y_pd.reshape(-1,1)).reshape(-1,)
     return abs(price.round(2))
 
@@ -84,7 +86,6 @@ div.stButton > button:first-child:hover {
     background-color: aqua;
     color:red;
 }
-
 .out{
     font-size:50px;
     color: red;
@@ -101,27 +102,12 @@ div.stButton > button:first-child:hover {
     background-image: radial-gradient(#aafaed, lime);
     color: #2d08ff;
     border-radius:2%;
-    padding:50px;
+    padding:30px;
     border:8px dashed #ff0883;
-    box-shadow: 50px 50px 20px #aafaed;
 }
-
 </style>""", unsafe_allow_html=True)
 
 
 if col2.button("♦ Predict My Diamond's Price",):
-    with st.spinner("Loading.."):
-        time.sleep(1)
-    c = st.empty()
     price=Prediction(features)[0]
-    c.markdown("<div class='out'>💎  ${}</div>".format(price),unsafe_allow_html=True)
-
-
-
-
-
-
-
-
-
-#print(features)
+    st.markdown("<div class='out'>Price ${}</div>".format(price),unsafe_allow_html=True)
