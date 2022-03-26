@@ -2,9 +2,11 @@ import streamlit as st
 import numpy as np
 import joblib as jb
 import warnings
+import os
 st.set_page_config(layout="centered",page_icon=":gem:")
 warnings.filterwarnings("ignore")
-st.image("./MyLogo.png",width=500)
+path = os.path.dirname(__file__)
+st.image(path+"/MyLogo.png",width=500)
 
 col1,col2= st.columns(2)
 col1.markdown('<h1 style="color:blue; font-family:cursive; text-align:center">Diamomd Price <br>Predictor </h1>',unsafe_allow_html=True)
