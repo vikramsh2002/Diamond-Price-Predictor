@@ -3,6 +3,7 @@ import numpy as np
 import joblib as jb
 import warnings
 import os
+import time
 st.set_page_config(layout="centered",page_icon=":gem:")
 warnings.filterwarnings("ignore")
 path = os.path.dirname(__file__)
@@ -102,12 +103,17 @@ div.stButton > button:first-child:hover {
     background-image: radial-gradient(#aafaed, lime);
     color: #2d08ff;
     border-radius:2%;
-    padding:30px;
+    padding:50px;
     border:8px dashed #ff0883;
+    box-shadow: 50px 50px 20px #aafaed;
 }
+
 </style>""", unsafe_allow_html=True)
 
 
 if col2.button("♦ Predict My Diamond's Price",):
+    with st.spinner("Loading.."):
+        time.sleep(1)
+    c = st.empty()
     price=Prediction(features)[0]
-    st.markdown("<div class='out'>Price ${}</div>".format(price),unsafe_allow_html=True)
+    c.markdown("<div class='out'>💎  ${}</div>".format(price),unsafe_allow_html=True)
