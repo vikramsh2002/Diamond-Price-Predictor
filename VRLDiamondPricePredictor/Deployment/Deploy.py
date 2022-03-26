@@ -4,7 +4,7 @@ import joblib as jb
 import warnings
 st.set_page_config(layout="centered",page_icon=":gem:")
 warnings.filterwarnings("ignore")
-st.image("MyLogo.png",width=500)
+st.image("./MyLogo.png",width=500)
 
 col1,col2= st.columns(2)
 col1.markdown('<h1 style="color:blue; font-family:cursive; text-align:center">Diamomd Price <br>Predictor </h1>',unsafe_allow_html=True)
