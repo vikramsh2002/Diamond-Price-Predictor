@@ -15,7 +15,7 @@ path_main = "/".join(path.split("/") [:-1])
 st.write(path_main)
 
 features = np.zeros((11,))
-maps=jb.load("../Maps.pkl")
+maps=jb.load(path_main+"/Maps.pkl")
 
 # Creating form to take
 
@@ -24,7 +24,7 @@ with st.expander("Shape of Diamonds"):
     shapes= list(maps["Shapes"].keys())
     col1,col2 = st.columns(2)
     col1.markdown("<h3>Select the Shape of your Diamond</h3>",unsafe_allow_html=True)
-    col2.image("Shapes/allshapes.png",caption='Different available shapes of Diamonds',width=150,)
+    col2.image(path+"/Shapes/allshapes.png",caption='Different available shapes of Diamonds',width=150,)
     sh_select = col1.selectbox("",shapes)
     #print("Shape: ",sh_select)
     features[-1]=maps["Shapes"][sh_select]
@@ -61,11 +61,11 @@ with st.expander("Appearance of Diamonds"):
 
 # Prediction Part Begins
 def Prediction(features):
-    model = jb.load("../Model/GBRModel.pkl")
-    scale_x=jb.load("../Scalers/ScalerX.pkl")
+    model = jb.load(path_main+"/Model/GBRModel.pkl")
+    scale_x=jb.load(path_main+"/Scalers/ScalerX.pkl")
     feat=scale_x.transform(features.reshape(1,-1))
     y_pd= model.predict(feat)
-    scale_y = jb.load("../Scalers/ScalerY.pkl")
+    scale_y = jb.load(path_main+"/Scalers/ScalerY.pkl")
     price = scale_y.inverse_transform(y_pd.reshape(-1,1)).reshape(-1,)
     return abs(price.round(2))
 
