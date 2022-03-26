@@ -11,7 +11,8 @@ st.write(path)
 col1,col2= st.columns(2)
 col1.markdown('<h1 style="color:blue; font-family:cursive; text-align:center">Diamomd Price <br>Predictor </h1>',unsafe_allow_html=True)
 col2.image(path+"/diamond.png",width=300)
-
+path_main = "/".join(path.split("/") [:-1])
+st.write(path_main)
 
 features = np.zeros((11,))
 maps=jb.load("../Maps.pkl")
