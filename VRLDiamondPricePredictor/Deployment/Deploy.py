@@ -89,22 +89,24 @@ div.stButton > button:first-child:hover {
 
 .out{
     font-size:50px;
-    color: white;
-    margin-left:50%;
-    border:2px solid black;
+    color: red;
+    margin-left:0px;
+    border:5px double #4108ff;
     text-align:center;
     border-radius:30%;
     padding:10px;
-    font-family:;
-    background-color: blue;
+    font-family: arial;
+    background-image: linear-gradient(#ffef08,#52ff08,#08ffb1);
     font-weight:normal;
 }
 .out:hover{
-    background-color: black;
-    color: orange;
-    border-radius:60%;
-    padding:20px;
+    background-image: radial-gradient(#aafaed, lime);
+    color: #2d08ff;
+    border-radius:2%;
+    padding:30px;
+    border:8px dashed #ff0883;
 }
+
 
 </style>""", unsafe_allow_html=True)
 
