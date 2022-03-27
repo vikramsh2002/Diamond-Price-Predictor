@@ -112,9 +112,9 @@ div.stButton > button:first-child:hover {
 
 
 if col2.button("♦ Predict My Diamond's Price",):
-    st.snow()
     with st.spinner("Loading.."):
         time.sleep(1)
+    st.success("Predicted Successfully.. \n Scroll Down to see")
     c = st.empty()
     price=Prediction(features)[0]
     c.markdown("<div class='out'>💎  ${}</div>".format(price),unsafe_allow_html=True)
