@@ -33,7 +33,7 @@ with st.expander("Shape of Diamonds"):
 
 # Messurement section
 st.cache()
-with st.expander("Messurements of Diamonds"):
+with st.expander("Measurements  of Diamonds"):
     features[0] = st.number_input("Depth of Diamond(mm)",min_value=3.0,max_value=13.0,step=0.01,value=3.0)
     features[1] = st.number_input("Height of Diamond(mm)",min_value=3.0,max_value=10.0,step=0.01,value=3.0)
     features[2] = st.number_input("Width of Diamond(mm)",min_value=1.0,max_value=7.0,step=0.01,value=1.0)
