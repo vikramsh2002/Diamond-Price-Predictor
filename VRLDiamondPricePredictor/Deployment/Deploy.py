@@ -112,6 +112,7 @@ div.stButton > button:first-child:hover {
 
 
 if col2.button("♦ Predict My Diamond's Price",):
+    st.snow()
     with st.spinner("Loading.."):
         time.sleep(1)
     c = st.empty()
